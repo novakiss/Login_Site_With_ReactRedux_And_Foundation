@@ -16,12 +16,6 @@ export default class Main extends Component {
     };
 
     render() {
-        /*render={()=>{
-                    console.log(this.props.name);
-                    if(this.props.name===null){
-                        return <HomePage/>
-                    } else return <Transactions/>;
-                }}*/
         return (<div>
             <h1>This is Main</h1>
             <Nav/>

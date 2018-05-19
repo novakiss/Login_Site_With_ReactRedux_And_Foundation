@@ -1,13 +1,13 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
-import SignIn from "./SignIn";
-import AccountInfo from "./AccountInfo";
+import SignInContainer from "../container/SignInContainer";
+import AccountInfoContainer from "../container/AccountInfoContainer";
 
  class Account extends Component{
     render(){
         const {username}=this.props;
         if (username===null){
-            return <SignIn/>}else{return <AccountInfo/>}
+            return <SignInContainer/>}else{return <AccountInfoContainer/>}
 
     }
 }

@@ -1,14 +1,13 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {login} from '../action';
 
-class SignIn extends Component {
+
+export default class SignIn extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
-        const {dispatch} = this.props;
+        const {login} = this.props;
         const {username, password} = this.refs;
         if (username.value === 'khoapham' && password.value === '123') {
-            dispatch(login());
+            login();
         }
     };
 
@@ -23,5 +22,3 @@ class SignIn extends Component {
 
     }
 }
-
-export default connect()(SignIn)
