@@ -1,15 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import registerServiceWorker from './registerServiceWorker';
-import './index.css';
+import ReactDOM from 'react-dom';import './index.css';
 import AppRouter from './AppRouter';
 import {Provider} from 'react-redux';
 import {createStore,compose} from 'redux';
 import reducer from './app/reducers/reducerCombine';
 
-
-
-export const store= createStore(reducer,compose(window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
+const store= createStore(reducer,compose(window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
 
 //store.dispatch({type:'LOG_IN',username:'khoapham'});
 /*
@@ -22,4 +18,3 @@ ReactDOM.render(
     <Provider store={store}>
         <AppRouter/>
     </Provider>, document.getElementById('root'));
-registerServiceWorker();
