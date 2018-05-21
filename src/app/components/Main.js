@@ -1,22 +1,46 @@
 import React, {Component} from 'react';
 import {Route, Switch} from 'react-router-dom';
+import axios from 'axios';
+import {connect} from 'react-redux';
+import {BrowserRouter} from 'react-router-dom';
+
 import HomePage from "./HomePage";
-import Account from "./Account";
+import AccountContainer from "../container/AccountContainer";
 import TransactionContainer from "../container/TransactionContainer";
 import Nav from "./Nav";
 import NotFound from "./NotFound";
 
-export default class Main extends Component {
+
+class Main extends Component {
+    componentDidUpdate() {
+        const {dispatch} = this.props;
+        axios.get('http://localhost:3000/getInfo')
+            .then(res => {
+                if (res.data !== 'CHUA_DANG_NHAP') {
+                    dispatch({type: 'LOG_IN', username: res.data});
+                    console.log(res.data);
+                }
+
+            })
+            .catch(err => console.log(err));
+    }
+
     render() {
-        return (<div>
-            <h1>This is Main</h1>
-            <Nav/>
-            <Switch>
-                <Route exact path="/"  component={HomePage}/>
-                <Route exact path="/account"  component={Account}/>
-                <Route exact path="/transaction" component={TransactionContainer}/>
-                <Route component={NotFound}/>
-            </Switch>
-        </div>)
+        return (
+            <BrowserRouter>
+                <div>
+                    <h1>This is Main</h1>
+                    <Nav/>
+                    <Switch>
+                        <Route exact path="/" component={HomePage}/>
+                        <Route exact path="/account" component={AccountContainer}/>
+                        <Route exact path="/transaction" component={TransactionContainer}/>
+                        <Route component={NotFound}/>
+                    </Switch>
+                </div>
+            </BrowserRouter>
+        )
     }
 }
+
+export default connect()(Main);
