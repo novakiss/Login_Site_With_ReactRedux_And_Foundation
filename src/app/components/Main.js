@@ -12,10 +12,11 @@ import NotFound from "./NotFound";
 
 
 class Main extends Component {
-    componentDidUpdate() {
+    componentDidMount() {
         const {dispatch} = this.props;
-        axios.get('http://localhost:3000/getInfo')
+        axios.get('/getInfo')
             .then(res => {
+                console.log(res.data);
                 if (res.data !== 'CHUA_DANG_NHAP') {
                     dispatch({type: 'LOG_IN', username: res.data});
                     console.log(res.data);

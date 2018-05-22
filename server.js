@@ -31,10 +31,14 @@ app.all('/*', function (req, res, next) {
 app.get('/',(req,res)=>{
     res.render('index');
 });
-app.get('/ping', function (req, res) {
-    req.session.username='abc';
-    console.log(req.session);
-    return res.send(req.session.username);
+app.post('/ping', function (req, res) {
+    console.log(req.body);
+    if(req.body.ping ==='TEST'){
+        req.session.ping='abc';
+    }
+    console.log(req.session.ping);
+    //return res.send(req.session.username);
+    return res.send(req.session.ping);
 });
 app.get('/pong', function (req, res) {
     return res.send(req.session.username);
