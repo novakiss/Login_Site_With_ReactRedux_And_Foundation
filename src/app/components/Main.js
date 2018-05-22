@@ -16,7 +16,6 @@ class Main extends Component {
         const {dispatch} = this.props;
         axios.get('/getInfo')
             .then(res => {
-                console.log(res.data);
                 if (res.data !== 'CHUA_DANG_NHAP') {
                     dispatch({type: 'LOG_IN', username: res.data});
                     console.log(res.data);

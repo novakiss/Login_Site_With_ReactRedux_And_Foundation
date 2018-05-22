@@ -61,6 +61,11 @@ app.get('/getInfo', (req, res) => {
     res.send('CHUA_DANG_NHAP');
 });
 
+app.get('/logout',(req,res)=>{
+   req.session.username=undefined;
+   res.send('DA_DANG_XUAT');
+});
+
 app.listen(process.env.PORT || 3000,()=>{
     console.log('Listening on localhost'+ process.env.PORT);
 });
