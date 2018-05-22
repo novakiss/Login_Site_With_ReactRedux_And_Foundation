@@ -7,8 +7,10 @@ import {BrowserRouter} from 'react-router-dom';
 import HomePage from "./HomePage";
 import AccountContainer from "../container/AccountContainer";
 import TransactionContainer from "../container/TransactionContainer";
+import NotificationContainer from "../container/NotificationContainer";
 import Nav from "./Nav";
 import NotFound from "./NotFound";
+
 
 
 class Main extends Component {
@@ -26,11 +28,14 @@ class Main extends Component {
     }
 
     render() {
+        const {notification}= this.props;
+        const xhtml= notification!=null?<NotificationContainer txt={notification}/>:null;
         return (
             <BrowserRouter>
                 <div>
                     <h1>This is Main</h1>
                     <Nav/>
+                    {xhtml}
                     <Switch>
                         <Route exact path="/" component={HomePage}/>
                         <Route exact path="/account" component={AccountContainer}/>
@@ -43,4 +48,8 @@ class Main extends Component {
     }
 }
 
-export default connect()(Main);
+const mapStateToProps=state=>{
+    return {notification:state.notification}
+};
+
+export default connect(mapStateToProps)(Main);

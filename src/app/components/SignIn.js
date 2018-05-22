@@ -4,14 +4,14 @@ import axios from 'axios';
 export default class SignIn extends Component {
     handleSubmit(e) {
         e.preventDefault();
-        const {login} = this.props;
+        const {login,showNotification} = this.props;
         const {username, password} = this.refs;
-        axios.post('http://localhost:3000/signIn',{username: username.value,password:password.value})
+        axios.post('/signIn',{username: username.value,password:password.value})
             .then(res=>{
                 if(res.data==='DANG_NHAP_THANH_CONG'){
                     login();
                 }else{
-                    console.log(res.data);
+                    showNotification('Dang nhap khong thanh cong');
                 }
             })
             .catch(err=>console.log(err))

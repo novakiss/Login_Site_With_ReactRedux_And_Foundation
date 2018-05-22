@@ -55,7 +55,6 @@ app.post('/signIn', (req, res) => {
 
 app.get('/getInfo', (req, res) => {
     if (req.session.username) {
-        console.log(req.session.username);
         return res.send(req.session.username);
     }
     res.send('CHUA_DANG_NHAP');
