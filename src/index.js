@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {createStore,compose} from 'redux';
 import reducer from './app/reducers/reducerCombine';
-import Main from "./app/components/Main";
+import MainContainer from "./app/container/MainContainer";
 
 const store= createStore(reducer,compose(window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
 
 ReactDOM.render(
     <Provider store={store}>
-        <Main/>
+        <MainContainer/>
     </Provider>, document.getElementById('root'));

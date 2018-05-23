@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Route, Switch} from 'react-router-dom';
 import axios from 'axios';
-import {connect} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
 
 import HomePage from "./HomePage";
@@ -11,9 +10,7 @@ import NotificationContainer from "../container/NotificationContainer";
 import Nav from "./Nav";
 import NotFound from "./NotFound";
 
-
-
-class Main extends Component {
+export default class Main extends Component {
     componentDidMount() {
         const {dispatch} = this.props;
         axios.get('/getInfo')
@@ -47,9 +44,3 @@ class Main extends Component {
         )
     }
 }
-
-const mapStateToProps=state=>{
-    return {notification:state.notification}
-};
-
-export default connect(mapStateToProps)(Main);
