@@ -1,10 +1,25 @@
+const webpack = require('webpack');
+//const env = process.env.NODE_ENV;
+
+
 module.exports = {
-    mode : 'production',
-    entry: './src/index',
+    //mode: env,
+    entry: ['./src/index',
+    'script-loader!jquery/dist/jquery.min.js',
+    'script-loader!foundation-sites/dist/js/foundation.min.js'],
     output: {
         path: __dirname,
         filename: './public/bundle.js'
     },
+    performance: {
+        hints: false
+    },
+    plugins: [
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery'
+        })
+    ],
     module: {
         rules: [
             {
@@ -16,7 +31,7 @@ module.exports = {
                         presets: ['react','es2015'],
                     }
                 }
-            }
+            },
         ]
     }
 };

@@ -30,7 +30,6 @@ export default class Main extends Component {
         return (
             <BrowserRouter>
                 <div>
-                    <h1>This is Main</h1>
                     <Nav/>
                     {xhtml}
                     <Switch>
