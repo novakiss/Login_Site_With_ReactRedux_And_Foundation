@@ -1,12 +1,10 @@
 const webpack = require('webpack');
-//const env = process.env.NODE_ENV;
-
 
 module.exports = {
-    //mode: env,
     entry: ['./src/index',
     'script-loader!jquery/dist/jquery.min.js',
     'script-loader!foundation-sites/dist/js/foundation.min.js'],
+    mode: "production",
     output: {
         path: __dirname,
         filename: './public/bundle.js'
