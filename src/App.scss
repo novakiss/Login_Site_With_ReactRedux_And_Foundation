@@ -1,0 +1,9 @@
+@import '../node_modules/foundation-sites/scss/foundation';
+@include foundation-everything;
+
+$space:2.5rem;
+
+.page-title{
+  margin-top: $space;
+  margin-bottom: $space*2;
+}
