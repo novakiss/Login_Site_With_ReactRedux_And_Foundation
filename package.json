@@ -24,13 +24,5 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  },
-  "devDependencies": {
-    "@babel/plugin-transform-arrow-functions": "^7.0.0-beta.47",
-    "babel-plugin-transform-es2015-arrow-functions": "^6.22.0",
-    "css-loader": "^0.28.11",
-    "foundation-sites": "^6.4.4-rc1",
-    "script-loader": "^0.7.2",
-    "style-loader": "^0.21.0"
   }
 }

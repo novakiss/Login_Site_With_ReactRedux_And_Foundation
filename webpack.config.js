@@ -1,9 +1,5 @@
-const webpack = require('webpack');
-
 module.exports = {
-    entry: ['./src/index',
-    'script-loader!jquery/dist/jquery.min.js',
-    'script-loader!foundation-sites/dist/js/foundation.min.js'],
+    entry: './src/index',
     mode: "production",
     output: {
         path: __dirname,
@@ -12,12 +8,6 @@ module.exports = {
     performance: {
         hints: false
     },
-    plugins: [
-        new webpack.ProvidePlugin({
-            $: 'jquery',
-            jQuery: 'jquery'
-        })
-    ],
     module: {
         rules: [
             {
