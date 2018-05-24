@@ -4,10 +4,12 @@ import axios from 'axios';
 import {BrowserRouter} from 'react-router-dom';
 import 'foundation-sites';
 import $ from 'jquery';
-import HomePage from "./HomePage";
+
 import AccountContainer from "../container/AccountContainer";
 import TransactionContainer from "../container/TransactionContainer";
 import NotificationContainer from "../container/NotificationContainer";
+
+import HomePage from "./HomePage";
 import Nav from "./Nav";
 import NotFound from "./NotFound";
 
