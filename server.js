@@ -65,6 +65,6 @@ app.get('/logout',(req,res)=>{
    res.send('DA_DANG_XUAT');
 });
 
-app.listen(process.env.PORT || 3000,()=>{
-    console.log('Listening on localhost'+ process.env.PORT);
+app.listen(process.env.PORT || 8080,()=>{
+    console.log('Listening on localhost'+ 8080);
 });
