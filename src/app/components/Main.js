@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import {Route, Switch} from 'react-router-dom';
 import axios from 'axios';
 import {BrowserRouter} from 'react-router-dom';
-
+import 'foundation-sites';
+import $ from 'jquery';
 import HomePage from "./HomePage";
 import AccountContainer from "../container/AccountContainer";
 import TransactionContainer from "../container/TransactionContainer";
@@ -12,6 +13,7 @@ import NotFound from "./NotFound";
 
 export default class Main extends Component {
     componentDidMount() {
+        $(document).foundation();
         const {dispatch} = this.props;
         axios.get('/getInfo')
             .then(res => {
