@@ -13,6 +13,7 @@ import HomePage from "./HomePage";
 import Nav from "./Nav";
 import NotFound from "./NotFound";
 
+import {LOG_IN} from '../constant';
 export default class Main extends Component {
     componentDidMount() {
         $(document).foundation();
@@ -20,7 +21,7 @@ export default class Main extends Component {
         axios.get('/getInfo')
             .then(res => {
                 if (res.data !== 'CHUA_DANG_NHAP') {
-                    dispatch({type: 'LOG_IN', username: res.data});
+                    dispatch({type: LOG_IN, username: res.data});
                     console.log(res.data);
                 }
 

@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 
 export default class AccountInfo extends Component{
     logout=()=>{
@@ -16,7 +17,7 @@ export default class AccountInfo extends Component{
             <h1>This is a Account</h1>
             Username: {this.props.username}
             <br/>
-            <a href="/#" onClick={this.logout}>Log out</a>
+            <Link exact to="/account" onClick={this.logout}>Log out</Link>
             </div>)
 
     }
