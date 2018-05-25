@@ -11,15 +11,15 @@ export default class Nav extends Component {
                             <a>One</a>
                             <ul className="menu vertical">
                                 <li><a>One</a></li>
-                                <li><a >Two</a></li>
+                                <li><a>Two</a></li>
                                 <li><a>Three</a></li>
                             </ul>
                         </li>
 
-                            <li><NavLink exact to="/" activeClassName="selected">HomePage</NavLink></li>
-                            <li><NavLink exact to="/account" activeClassName="selected">Account</NavLink></li>
-                            <li><NavLink exact to="/transaction" activeClassName="selected">Transaction</NavLink></li>
-
+                        <li><NavLink exact to="/" activeClassName="selected">HomePage</NavLink></li>
+                        <li><NavLink exact to="/account" activeClassName="selected">Account</NavLink></li>
+                        <li><NavLink exact to="/transaction" activeClassName="selected">Transaction</NavLink></li>
+                        <li><NavLink exact to="/getData" activeClassName="selected">getData</NavLink></li>
                     </ul>
                 </div>
                 <div className="top-bar-right">
