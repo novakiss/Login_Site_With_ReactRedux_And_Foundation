@@ -42,22 +42,19 @@ export const logout = () => {
     }
 };
 
-const showNotification = (txt) => ({
-    type: SHOW_NOTIFICATION,
-    txt: txt
-});
+export const checkLogin=()=>{
+    return (dispatch)=>
+        axios.get('/getInfo')
+        .then(res => {
+            if (res.data !== 'CHUA_DANG_NHAP') {
+                dispatch({type: LOG_IN, username: res.data});
+            }
+
+        })
+        .catch(err => console.log(err));
+};
 
 export const hideNotification = () => ({type: HIDE_NOTIFICATION});
-
-const getData = () => ({type: FETCHING_DATA});
-
-const getDataSuccess = (data) => ({
-        type: FETCHING_DATA_SUCCESS,
-        data,
-    }
-);
-
-const getDataFailure = () => ({type: FETCHING_DATA_FAILURE});
 
 export const fetchData=()=> {
     return (dispatch) => {
@@ -72,3 +69,17 @@ export const fetchData=()=> {
             })
     }
 };
+
+const showNotification = (txt) => ({
+    type: SHOW_NOTIFICATION,
+    txt: txt
+});
+
+const getData = () => ({type: FETCHING_DATA});
+
+const getDataSuccess = (data) => ({
+    type: FETCHING_DATA_SUCCESS,
+    data,
+});
+
+const getDataFailure = () => ({type: FETCHING_DATA_FAILURE});

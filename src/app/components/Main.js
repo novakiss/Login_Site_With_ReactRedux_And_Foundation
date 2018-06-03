@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Route, Switch} from 'react-router-dom';
-import axios from 'axios';
 import {BrowserRouter} from 'react-router-dom';
 import 'foundation-sites';
 import $ from 'jquery';
@@ -14,20 +13,10 @@ import HomePage from "./HomePage";
 import Nav from "./Nav";
 import NotFound from "./NotFound";
 
-import {LOG_IN} from '../constant';
-
 export default class Main extends Component {
     componentDidMount() {
         $(document).foundation();
-        const {dispatch} = this.props;
-        axios.get('/getInfo')
-            .then(res => {
-                if (res.data !== 'CHUA_DANG_NHAP') {
-                    dispatch({type: LOG_IN, username: res.data});
-                }
-
-            })
-            .catch(err => console.log(err));
+        this.props.checkLogin();
     }
 
     render() {
