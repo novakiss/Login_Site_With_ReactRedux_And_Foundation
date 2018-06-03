@@ -1,11 +1,11 @@
 import {connect} from 'react-redux';
 
-import {login,showNotification} from '../action';
+import {login} from '../action';
 
 import SignIn from '../components/SignIn';
 
 const mapDispatchToProps= {
-     login,showNotification
+     login
 };
 
 export default connect(null,mapDispatchToProps)(SignIn)
