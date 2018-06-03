@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 import {
     HIDE_NOTIFICATION,
     LOG_IN,
@@ -15,9 +17,19 @@ export const login = () => ({
     username: 'khoapham'
 });
 
-export const logout = () => ({
-    type: LOG_OUT
-});
+export const logout = () => {
+    return (dispatch) => {
+        axios.get('/logout')
+            .then(() =>
+                dispatch({
+                    type: LOG_OUT
+                })
+            )
+            .catch(err => console.log(err))
+        ;
+    }
+};
+
 
 export const showNotification = (txt) => ({
     type: SHOW_NOTIFICATION,
@@ -56,6 +68,7 @@ export function fetchData() {
             })
             .catch((err) => {
                 dispatch(getDataFailure());
-                console.log('err:', err)})
+                console.log('err:', err)
+            })
     }
 }
