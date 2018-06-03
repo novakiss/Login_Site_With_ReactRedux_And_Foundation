@@ -24,7 +24,6 @@ export default class Main extends Component {
             .then(res => {
                 if (res.data !== 'CHUA_DANG_NHAP') {
                     dispatch({type: LOG_IN, username: res.data});
-                    console.log(res.data);
                 }
 
             })

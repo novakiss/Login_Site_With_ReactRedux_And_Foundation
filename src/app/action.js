@@ -12,8 +12,8 @@ import {
 
 import getPeople from '../api'
 
-export const login = (username,password) => {
-    return (dispatch)=> {
+export const login = (username, password) => {
+    return (dispatch) => {
         axios.post('/signIn', {username: username, password: password})
             .then(res => {
                 if (res.data === 'DANG_NHAP_THANH_CONG') {
@@ -29,8 +29,6 @@ export const login = (username,password) => {
     }
 };
 
-
-
 export const logout = () => {
     return (dispatch) => {
         axios.get('/logout')
@@ -44,36 +42,24 @@ export const logout = () => {
     }
 };
 
-
 const showNotification = (txt) => ({
     type: SHOW_NOTIFICATION,
     txt: txt
 });
 
-export const hideNotification = () => ({
-    type: HIDE_NOTIFICATION
-});
+export const hideNotification = () => ({type: HIDE_NOTIFICATION});
 
-function getData() {
-    return {
-        type: FETCHING_DATA
-    }
-}
+const getData = () => ({type: FETCHING_DATA});
 
-function getDataSuccess(data) {
-    return {
+const getDataSuccess = (data) => ({
         type: FETCHING_DATA_SUCCESS,
         data,
     }
-}
+);
 
-function getDataFailure() {
-    return {
-        type: FETCHING_DATA_FAILURE
-    }
-}
+const getDataFailure = () => ({type: FETCHING_DATA_FAILURE});
 
-export function fetchData() {
+export const fetchData=()=> {
     return (dispatch) => {
         dispatch(getData());
         getPeople()
@@ -85,4 +71,4 @@ export function fetchData() {
                 console.log('err:', err)
             })
     }
-}
+};
