@@ -8,6 +8,7 @@ import AccountContainer from "../container/AccountContainer";
 import TransactionContainer from "../container/TransactionContainer";
 import NotificationContainer from "../container/NotificationContainer";
 import GetDataContainer from "../container/GetDataContainer";
+import RegisterContainer from "../container/RegisterContainer";
 
 import HomePage from "./HomePage";
 import Nav from "./Nav";
@@ -29,6 +30,7 @@ export default class Main extends Component {
                     {xhtml}
                     <Switch>
                         <Route exact path="/" component={HomePage}/>
+                        <Route exact path="/account/register" component={RegisterContainer}/>
                         <Route exact path="/account" component={AccountContainer}/>
                         <Route exact path="/transaction" component={TransactionContainer}/>
                         <Route exact path="/getData" component={GetDataContainer}/>

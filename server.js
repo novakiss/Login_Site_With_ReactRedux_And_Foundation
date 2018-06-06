@@ -9,12 +9,13 @@ const sess = {
     resave: false,
     saveUninitialized: true,
 };
+
 app.engine('html', require('ejs').renderFile);
 app.set('trust proxy', 1); // trust first proxy
 app.use(session(sess));
 
-app.set('public engine','html');
-app.set('public','./public');
+app.set('public engine', 'html');
+app.set('public', './public');
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -28,13 +29,13 @@ app.all('/*', function (req, res, next) {
     next();
 });
 
-app.get('/',(req,res)=>{
+app.get('/', (req, res) => {
     res.render('index');
 });
 app.post('/ping', function (req, res) {
     console.log(req.body);
-    if(req.body.ping ==='TEST'){
-        req.session.ping='abc';
+    if (req.body.ping === 'TEST') {
+        req.session.ping = 'abc';
     }
     console.log(req.session.ping);
     //return res.send(req.session.username);
@@ -60,11 +61,40 @@ app.get('/getInfo', (req, res) => {
     res.send('CHUA_DANG_NHAP');
 });
 
-app.get('/logout',(req,res)=>{
-   req.session.username=undefined;
-   res.send('DA_DANG_XUAT');
+app.post('/register', (req, res) => {
+    const {id, username, password} = req.body;
+
+    if (id !== null && username !== null && password !== null) {
+        if (req.session.registerUser) {
+            const test = {
+                ...req.session.registerUser.reg,
+                user: {...req.session.registerUser.reg.user, [id]: {username: username, password: password}},
+                allId:[...req.session.registerUser.reg.allId,id]
+            };
+            req.session.registerUser = {reg: test};
+        }else {
+            req.session.registerUser = {
+                reg: {user: {[id]: {username: username, password: password}},allId:[id]}
+            };
+        }
+        return res.send('REGISTER_SUCCESS')
+    }
+
+    return res.send('RESGISTER_FAILED');
 });
 
-app.listen(process.env.PORT || 8080,()=>{
-    console.log('Listening on localhost'+ 8080);
+app.get('/registered', (req, res) => {
+    if (req.session.registerUser) {
+        return res.send(req.session.registerUser)
+    }
+    res.send('CHUA_TAO_TAI_KHOAN');
+});
+
+app.get('/logout', (req, res) => {
+    req.session.username = undefined;
+    res.send('DA_DANG_XUAT');
+});
+
+app.listen(process.env.PORT || 8080, () => {
+    console.log('Listening on localhost' + 8080);
 });

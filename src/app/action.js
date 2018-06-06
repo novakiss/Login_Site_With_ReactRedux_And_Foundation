@@ -7,7 +7,8 @@ import {
     SHOW_NOTIFICATION,
     FETCHING_DATA,
     FETCHING_DATA_FAILURE,
-    FETCHING_DATA_SUCCESS
+    FETCHING_DATA_SUCCESS,
+    REGISTER
 } from './constant';
 
 import getPeople from '../api'
@@ -42,21 +43,21 @@ export const logout = () => {
     }
 };
 
-export const checkLogin=()=>{
-    return (dispatch)=>
+export const checkLogin = () => {
+    return (dispatch) =>
         axios.get('/getInfo')
-        .then(res => {
-            if (res.data !== 'CHUA_DANG_NHAP') {
-                dispatch({type: LOG_IN, username: res.data});
-            }
+            .then(res => {
+                if (res.data !== 'CHUA_DANG_NHAP') {
+                    dispatch({type: LOG_IN, username: res.data});
+                }
 
-        })
-        .catch(err => console.log(err));
+            })
+            .catch(err => console.log(err));
 };
 
 export const hideNotification = () => ({type: HIDE_NOTIFICATION});
 
-export const fetchData=()=> {
+export const fetchData = () => {
     return (dispatch) => {
         dispatch(getData());
         getPeople()
@@ -70,7 +71,25 @@ export const fetchData=()=> {
     }
 };
 
-const showNotification = (txt) => ({
+export const register = (id, username, password) => {
+    return (dispatch) => {
+        axios.post('/register', {id, username, password})
+            .then((res) => {
+                if (res.data !== 'RESGISTER_FAILED') {
+                    dispatch({
+                        type: REGISTER,
+                        payload: {
+                            id, username, password
+                        }
+                    })
+                }
+
+            })
+            .catch((e)=>console.log(e))
+    }
+};
+
+export const showNotification = (txt) => ({
     type: SHOW_NOTIFICATION,
     txt: txt
 });
