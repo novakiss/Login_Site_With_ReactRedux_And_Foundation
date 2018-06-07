@@ -1,9 +1,9 @@
 This Project use:
 
-- ReactRouter
+- ReactRouterDom
 - Link and IndexLink
-- React Router onEnter
 - Login and Logout demo
+- Register Demo
 - Module axios
 - Foundation css
 - Foundation scss
