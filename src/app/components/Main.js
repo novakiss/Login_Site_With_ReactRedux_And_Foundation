@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {Route, Switch} from 'react-router-dom';
-import {BrowserRouter} from 'react-router-dom';
+import {Router} from 'react-router-dom';
 import 'foundation-sites';
 import $ from 'jquery';
+import {history} from "../helper/history";
 
 import AccountContainer from "../container/AccountContainer";
 import TransactionContainer from "../container/TransactionContainer";
@@ -24,7 +25,7 @@ export default class Main extends Component {
         const {notification}= this.props;
         const xhtml= notification!=null?<NotificationContainer txt={notification}/>:null;
         return (
-            <BrowserRouter>
+            <Router history={history}>
                 <div>
                     <Nav/>
                     {xhtml}
@@ -37,7 +38,7 @@ export default class Main extends Component {
                         <Route component={NotFound}/>
                     </Switch>
                 </div>
-            </BrowserRouter>
+            </Router>
         )
     }
 }

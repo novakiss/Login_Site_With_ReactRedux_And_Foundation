@@ -1,28 +1,53 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
+
+import axios from "axios/index";
 
 export default class Register extends Component {
+    state = {
+        username: '',
+        password: '',
+        submitted: false,
+        id:null
+    };
+
+    componentWillMount(){
+        axios.get('/registered')
+            .then(res => {res.data.allId? this.setState({id:res.data.allId.slice(-1)[0]}):this.setState({id:-1})});
+    };
+
+    handleChange = (e) => {
+        e.preventDefault();
+        const {name, value} = e.target;
+        this.setState({[name]: value});
+    };
+
+
+
     handleRegister = (e) => {
         e.preventDefault();
-        const {register,showNotification}= this.props;
-        const {username,password}= this.refs;
-        const {registerUser}= this.props;
-        const id= registerUser.allUserId.length? registerUser.allUserId.slice(-1)[0]+1:0;
-        if(username.value!=='' && password.value!==''){
-            register(id,username.value,password.value);
-        }else {
-            showNotification('Sie müssen andere');
+        this.setState({submitted: true});
+        const {register} = this.props;
+        const{id}=this.state;
+        const {username, password} = this.state;
+        if (username !== '' && password !== '') {
+            register(id+1, username, password);
         }
-
     };
 
     render() {
+        const {username, password, submitted} = this.state;
         return (
             <div className="grid-container">
-                <form>
+                <form onSubmit={this.handleRegister}>
                     <h1 className="text-center page-title">Register</h1>
-                    Username: <input type="text" placeholder="Enter your username here" ref="username"/>
-                    Password: <input type="password" ref="password"/>
-                    <button className="button expanded" onClick={this.handleRegister}>Register</button>
+                    Username: <input type="text" placeholder="Enter your username here" onChange={this.handleChange}
+                                     name="username" value={username}/>
+                    {submitted && !username && <div className="help-text">Username is required</div>}
+                    Password: <input type="password" name="password" onChange={this.handleChange} value={password}/>
+                    {submitted && !password && <div className="help-text">Password is required</div>}
+                    <button type="submit" className="button">Register</button>
+                    <Link to="/account">Cancel</Link>
                 </form>
             </div>
 

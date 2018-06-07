@@ -46,12 +46,9 @@ app.get('/pong', function (req, res) {
 });
 
 app.post('/signIn', (req, res) => {
-    const {username, password} = req.body;
-    if (username === 'khoapham' && password === '123') {
-        req.session.username = 'khoapham';
-        return res.send('DANG_NHAP_THANH_CONG');
-    }
-    res.send('DANG_NHAP_THAT_BAI');
+    const {username} = req.body;
+    req.session.username = username;
+    return res.send('DANG_NHAP_THANH_CONG');
 });
 
 app.get('/getInfo', (req, res) => {
@@ -66,16 +63,13 @@ app.post('/register', (req, res) => {
 
     if (id !== null && username !== null && password !== null) {
         if (req.session.registerUser) {
-            const test = {
-                ...req.session.registerUser.reg,
-                user: {...req.session.registerUser.reg.user, [id]: {username: username, password: password}},
-                allId:[...req.session.registerUser.reg.allId,id]
-            };
-            req.session.registerUser = {reg: test};
-        }else {
             req.session.registerUser = {
-                reg: {user: {[id]: {username: username, password: password}},allId:[id]}
+                ...req.session.registerUser,
+                user: {...req.session.registerUser.user, [id]: {username: username, password: password}},
+                allId: [...req.session.registerUser.allId, id]
             };
+        } else {
+            req.session.registerUser = {user: {[id]: {username: username, password: password}}, allId: [id]};
         }
         return res.send('REGISTER_SUCCESS')
     }

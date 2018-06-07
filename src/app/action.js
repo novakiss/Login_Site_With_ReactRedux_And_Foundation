@@ -11,22 +11,29 @@ import {
     REGISTER
 } from './constant';
 
-import getPeople from '../api'
+import {history} from "./helper/history";
 
 export const login = (username, password) => {
     return (dispatch) => {
-        axios.post('/signIn', {username: username, password: password})
-            .then(res => {
-                if (res.data === 'DANG_NHAP_THANH_CONG') {
-                    dispatch({
-                        type: LOG_IN,
-                        username: 'khoapham'
-                    })
-                } else {
-                    dispatch(showNotification('Dang nhap khong thanh cong'));
-                }
-            })
-            .catch(err => console.log(err))
+        getRegistered().then(res => {
+            if (res !== null) {
+                res.allId.forEach((e) => {
+                    if(username === res.user[e].username && password === res.user[e].password) {
+                        axios.post('/signIn', {username: username, password: password})
+                            .then(res => {
+                                if (res.data === 'DANG_NHAP_THANH_CONG') {
+                                    dispatch({
+                                        type: LOG_IN,
+                                        username: username
+                                    })
+                                }
+                            })
+                            .catch(err => console.log(err))
+                    }
+                });
+            }
+        }).catch((e) => console.log(e));
+
     }
 };
 
@@ -60,19 +67,23 @@ export const hideNotification = () => ({type: HIDE_NOTIFICATION});
 export const fetchData = () => {
     return (dispatch) => {
         dispatch(getData());
-        getPeople()
-            .then((data) => {
-                dispatch(getDataSuccess(data))
+        axios.get('/registered')
+            .then((res) => {
+                setTimeout(() => {
+                    dispatch(getDataSuccess(res.data))
+                }, 3000)
             })
             .catch((err) => {
                 dispatch(getDataFailure());
                 console.log('err:', err)
             })
+
     }
 };
 
 export const register = (id, username, password) => {
     return (dispatch) => {
+
         axios.post('/register', {id, username, password})
             .then((res) => {
                 if (res.data !== 'RESGISTER_FAILED') {
@@ -81,12 +92,22 @@ export const register = (id, username, password) => {
                         payload: {
                             id, username, password
                         }
-                    })
+                    });
+                    history.push('/account');
                 }
-
             })
-            .catch((e)=>console.log(e))
+            .catch((e) => console.log(e))
     }
+};
+
+export const getRegistered = () => {
+    return axios.get('/registered')
+        .then(res => {
+            if (res.data) {
+                return res.data;
+            }
+            return null;
+        });
 };
 
 export const showNotification = (txt) => ({
