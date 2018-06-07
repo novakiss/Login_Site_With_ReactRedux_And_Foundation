@@ -9,6 +9,6 @@ This Project use:
 - Foundation scss
 - Middleware react-thunk
 
-To use Project. Use npm i and webpack -w. And then in your console can you tipp:
- node server.js to run Server
+To use Project. Use npm i and then in your console can you tipp:
+ node server.js to run Server.
  
