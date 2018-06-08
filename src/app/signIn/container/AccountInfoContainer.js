@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 
-import {logout} from '../action';
+import {logout} from '../actions';
 
 import AccountInfo from '../components/AccountInfo';
 

@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 
 import GetData from "../components/GetData";
-import {fetchData} from '../action';
+import {fetchData} from '../actions';
 
 const mapStateToProps = state => {
     const {username} = state;

@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 
-import {login} from '../action';
+import {login} from '../actions';
 
 import SignIn from '../components/SignIn';
 

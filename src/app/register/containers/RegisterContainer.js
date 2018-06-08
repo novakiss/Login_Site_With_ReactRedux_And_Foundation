@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 
-import {register,showNotification} from '../action'
+import {register} from '../actions'
 
 import Register from '../components/Register';
 
@@ -10,7 +10,7 @@ const mapStateToProps= state=>{
 };
 
 const mapDispatchToProps ={
-    register,showNotification
+    register
 };
 
 export default connect(mapStateToProps,mapDispatchToProps)(Register)

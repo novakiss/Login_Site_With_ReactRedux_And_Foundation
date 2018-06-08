@@ -1,4 +1,4 @@
-import {SHOW_NOTIFICATION,HIDE_NOTIFICATION} from '../constant';
+import {SHOW_NOTIFICATION,HIDE_NOTIFICATION} from '../constants';
 
 const notification = (state=null, action)=>{
     switch (action.type){

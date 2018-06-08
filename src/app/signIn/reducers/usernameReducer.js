@@ -1,4 +1,4 @@
-import {LOG_IN,LOG_OUT} from '../constant';
+import {LOG_IN,LOG_OUT} from '../constants';
 
 const username = (state=null, action)=>{
     switch (action.type){
