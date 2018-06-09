@@ -22,15 +22,13 @@ export default class Register extends Component {
         this.setState({[name]: value});
     };
 
-
-
     handleRegister = (e) => {
         e.preventDefault();
         this.setState({submitted: true});
         const {register} = this.props;
         const{id}=this.state;
         const {username, password} = this.state;
-        if (username !== '' && password !== '') {
+        if (username.trim() !== '' && password.trim() !== '') {
             register(id+1, username, password);
         }
     };
@@ -43,9 +41,9 @@ export default class Register extends Component {
                     <h1 className="text-center page-title">Register</h1>
                     Username: <input type="text" placeholder="Enter your username here" onChange={this.handleChange}
                                      name="username" value={username}/>
-                    {submitted && !username && <div className="help-text">Username is required</div>}
+                    {submitted && !username.trim() && <div className="help-text">Username is required</div>}
                     Password: <input type="password" name="password" onChange={this.handleChange} value={password}/>
-                    {submitted && !password && <div className="help-text">Password is required</div>}
+                    {submitted && !password.trim() && <div className="help-text">Password is required</div>}
                     <button type="submit" className="button">Register</button>
                     <Link to="/account">Cancel</Link>
                 </form>

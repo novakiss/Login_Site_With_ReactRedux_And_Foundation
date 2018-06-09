@@ -3,13 +3,13 @@ import {Route, Switch} from 'react-router-dom';
 import {Router} from 'react-router-dom';
 import 'foundation-sites';
 import $ from 'jquery';
-import {history} from "../../helper/history";
+import {history} from "../../../helper/history";
 
-import AccountContainer from "../signIn/container/AccountContainer";
-import TransactionContainer from "../container/TransactionContainer";
-import NotificationContainer from "../notification/containers/NotificationContainer";
-import GetDataContainer from "../showRegistered/containers/GetDataContainer";
-import RegisterContainer from "../register/containers/RegisterContainer";
+import AccountContainer from "../../signIn/container/AccountContainer";
+import TransactionContainer from "../../transaction/containers/TransactionContainer";
+import NotificationContainer from "../../notification/containers/NotificationContainer";
+import GetDataContainer from "../../showRegistered/containers/GetDataContainer";
+import RegisterContainer from "../../register/containers/RegisterContainer";
 
 import HomePage from "./HomePage";
 import Nav from "./Nav";

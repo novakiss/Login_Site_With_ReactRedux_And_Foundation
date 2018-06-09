@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {store} from "./helper/store";
 
-import MainContainer from "./app/container/MainContainer";
+import MainContainer from "./app/main/container/MainContainer";
 
 require('./App.css');
 require('foundation-sites/dist/css/foundation.min.css');

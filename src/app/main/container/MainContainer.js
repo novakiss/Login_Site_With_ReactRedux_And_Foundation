@@ -2,7 +2,7 @@ import {connect} from 'react-redux';
 
 import Main from "../components/Main";
 
-import {checkLogin} from '../signIn/actions'
+import {checkLogin} from '../actions'
 
 const mapStateToProps=state=>{
     return {notification:state.notification}

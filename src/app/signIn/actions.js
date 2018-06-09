@@ -47,15 +47,3 @@ export const getAllRegistered = () => {
             return null;
         });
 };
-
-export const checkLogin = () => {
-    return (dispatch) =>
-        axios.get('/getInfo')
-            .then(res => {
-                if (res.data !== 'CHUA_DANG_NHAP') {
-                    dispatch({type: LOG_IN, username: res.data});
-                }
-
-            })
-            .catch(err => console.log(err));
-};
