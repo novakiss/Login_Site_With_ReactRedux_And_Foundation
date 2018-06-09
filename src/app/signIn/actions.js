@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {LOG_IN, LOG_OUT} from "./constants";
+import {showNotification} from "../notification/actions";
 
 export const login = (username, password) => {
     return (dispatch) => {
@@ -17,6 +18,8 @@ export const login = (username, password) => {
                                 }
                             })
                             .catch(err => console.log(err))
+                    }else{
+                        dispatch(showNotification('Failed Login'));
                     }
                 });
             }

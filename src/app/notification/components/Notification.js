@@ -7,7 +7,7 @@ export default class Notification extends Component{
         },3000)
     }
     render(){
-        return (<div className="grid-container">
+        return (<div className="grid-container alert-danger">
             <p>{this.props.txt}</p>
         </div>)
     }
