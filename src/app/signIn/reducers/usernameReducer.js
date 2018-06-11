@@ -1,14 +1,19 @@
 import {LOG_IN,LOG_OUT} from '../constants';
 
-const username = (state=null, action)=>{
+const initialState= {
+  username:null,
+  admin: false
+};
+
+const login = (state=initialState, action)=>{
     switch (action.type){
         case LOG_IN:
-            return action.username;
+            return {...state,username:action.username,admin:action.admin};
         case LOG_OUT:
-            return null;
+            return {...state,username:null,admin:false};
         default:
             return state;
     }
 };
 
-export default username;
+export default login;

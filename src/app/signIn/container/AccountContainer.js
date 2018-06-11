@@ -3,7 +3,8 @@ import {connect} from 'react-redux';
 import Account from '../components/Account';
 
 const mapStateToProps= state =>{
-    return {username:state.username}
+    const {username,admin}= state.login;
+    return {username,admin}
 };
 
 

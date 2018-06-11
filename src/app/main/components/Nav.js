@@ -19,7 +19,7 @@ export default class Nav extends Component {
                         <li><NavLink exact to="/" activeClassName="selected">HomePage</NavLink></li>
                         <li><NavLink exact to="/account" activeClassName="selected">Account</NavLink></li>
                         <li><NavLink exact to="/transaction" activeClassName="selected">Transaction</NavLink></li>
-                        <li><NavLink exact to="/getData" activeClassName="selected">getData</NavLink></li>
+                        <li><NavLink exact to="/getData" activeClassName="selected">getAllUser</NavLink></li>
                     </ul>
                 </div>
                 <div className="top-bar-right">

@@ -18,7 +18,9 @@ export default class SignIn extends Component {
         this.setState({submitted: true});
         const {login} = this.props;
         const {username, password} = this.state;
-        login(username, password);
+        if(username && password){
+            login(username, password)
+        }
     };
 
     render() {

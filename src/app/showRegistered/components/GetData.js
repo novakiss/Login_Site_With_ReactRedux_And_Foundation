@@ -7,9 +7,13 @@ export default class GetData extends Component {
     };
 
     render() {
-        const {username} = this.props;
-        if (username === null) {
-            return (<div>Sie müssen einloggen. Try username:'admin' va password: '123'</div>)
+        const {admin} = this.props;
+        if (!admin) {
+            return (<div className="grid-container">
+                <div className="grid-x align-center">
+                    Sie sind nicht Admin. Wenn Sie admin sind, loggen Sie bitten ein.
+                </div>
+            </div>)
         }
         const {data, isFetching} = this.props;
         return (

@@ -5,7 +5,8 @@ import {logout} from '../actions';
 import AccountInfo from '../components/AccountInfo';
 
 const mapStateToProps= state =>{
-    return {username:state.username}
+    const {username,admin}=state.login;
+    return {username,admin}
 };
 const mapDispatchToProps= {
     logout

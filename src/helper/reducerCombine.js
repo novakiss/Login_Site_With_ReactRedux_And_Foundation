@@ -5,6 +5,6 @@ import notification from '../app/notification/reducers/notificationReducer';
 import getDataReducer from '../app/showRegistered/reducers/getDataReducer';
 import registerUser from '../app/register/reducers/registerUserReducer';
 
-const reducer= combineReducers({registerUser,username,notification,data:getDataReducer});
+const reducer= combineReducers({registerUser,login:username,notification,data:getDataReducer});
 
 export default reducer;

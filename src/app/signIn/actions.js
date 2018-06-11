@@ -4,27 +4,43 @@ import {showNotification} from "../notification/actions";
 
 export const login = (username, password) => {
     return (dispatch) => {
-        getAllRegistered().then(res => {
-            if (res !== null) {
-                res.allId.forEach((e) => {
-                    if ((username === res.user[e].username && password === res.user[e].password) || (username === 'admin' && password === '123')) {
-                        axios.post('/signIn', {username: username, password: password})
-                            .then(res => {
-                                if (res.data === 'DANG_NHAP_THANH_CONG') {
-                                    dispatch({
-                                        type: LOG_IN,
-                                        username: username
-                                    })
-                                }
-                            })
-                            .catch(err => console.log(err))
-                    }else{
-                        dispatch(showNotification('Failed Login'));
+        if (username === 'admin' && password === '123') {
+            axios.post('/signIn', {username: username, password: password})
+                .then(res => {
+                    if (res.data === 'DANG_NHAP_THANH_CONG') {
+                        dispatch({
+                            type: LOG_IN,
+                            username: username,
+                            admin: true
+                        })
                     }
-                });
-            }
-        }).catch((e) => console.log(e));
-
+                })
+                .catch(err => console.log(err))
+        } else {
+            getAllRegistered().then(res => {
+                if (res.allId ) {
+                    res.allId.forEach((e) => {
+                        if ((username === res.user[e].username && password === res.user[e].password)) {
+                            axios.post('/signIn', {username: username, password: password})
+                                .then(res => {
+                                    if (res.data === 'DANG_NHAP_THANH_CONG') {
+                                        dispatch({
+                                            type: LOG_IN,
+                                            username: username,
+                                            admin: false
+                                        })
+                                    }
+                                })
+                                .catch(err => console.log(err))
+                        } else {
+                            dispatch(showNotification('Failed Login'));
+                        }
+                    });
+                }else {
+                    dispatch(showNotification('Failed Login'));
+                }
+            }).catch((e) => console.log(e));
+        }
     }
 };
 

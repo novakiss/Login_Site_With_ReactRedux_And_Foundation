@@ -4,9 +4,9 @@ import GetData from "../components/GetData";
 import {fetchData} from '../actions';
 
 const mapStateToProps = state => {
-    const {username} = state;
+    const {admin} = state.login;
     const {data, dataFetched, isFetching, error} = state.data;
-    return {username,data, dataFetched, isFetching, error}
+    return {data, dataFetched, isFetching, error,admin}
 };
 const mapDisPatchToProps = {
     fetchData: fetchData
