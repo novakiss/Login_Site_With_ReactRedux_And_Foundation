@@ -7,15 +7,15 @@ export default class GetData extends Component {
     };
 
     render() {
-        const {admin} = this.props;
-        if (!admin) {
+        const {username} = this.props;
+        const {data, isFetching} = this.props;
+        if (username !== 'admin') {
             return (<div className="grid-container">
                 <div className="grid-x align-center">
                     Sie sind nicht Admin. Wenn Sie admin sind, loggen Sie bitten ein.
                 </div>
             </div>)
         }
-        const {data, isFetching} = this.props;
         return (
             <div className="grid-container">
                 <div className="grid-x grid-y align-middle">
@@ -24,13 +24,24 @@ export default class GetData extends Component {
                         isFetching && <div>Loading</div>
                     }
                     {
-                        data.allId ? (
-                            data.allId.map((id) =>
-                                (<div key={id}>
-                                    Username:{data.user[id].username}
-                                </div>)
-                            )
-                        ) : null
+                        data.allId ? (<table>
+                            <thead>
+                            <tr>
+                                <th width="200">Vorname</th>
+                                <th width="150">Nachname</th>
+                                <th width="150">Username</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                {data.allId.map((id) =>
+                                    (<tr key={id}>
+                                        <td>{data.user[id].firstName}</td>
+                                        <td>{data.user[id].lastName}</td>
+                                        <td>{data.user[id].username}</td>
+                                    </tr>)
+                                )}
+                            </tbody>
+                        </table>) : null
                     }
                 </div>
             </div>

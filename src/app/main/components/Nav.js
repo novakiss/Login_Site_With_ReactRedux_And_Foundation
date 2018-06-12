@@ -3,7 +3,7 @@ import {NavLink} from 'react-router-dom';
 
 export default class Nav extends Component {
     render() {
-        return (<div className="top-bar">
+        return (<div className="top-bar" data-topbar role="navigation">
                 <div className="top-bar-left">
                     <ul className="dropdown menu" data-dropdown-menu>
                         <li className="menu-text">Site Title</li>

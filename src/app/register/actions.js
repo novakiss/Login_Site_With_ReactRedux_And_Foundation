@@ -3,19 +3,19 @@ import {REGISTER} from "./constants";
 import {history} from "../../helper/history";
 import {showNotification} from "../notification/actions";
 
-export const register = (id, username, password) => {
+export const register = (id, username, password,firstName,lastName) => {
     return (dispatch) => {
         checkUserAlreadyRegister(username).then(res => {
             if (res) {
                 dispatch(showNotification('User already registered!'))
             } else {
-                axios.post('/register', {id, username, password})
+                axios.post('/register', {id, username, password,firstName,lastName})
                     .then((res) => {
                         if (res.data !== 'RESGISTER_FAILED') {
                             dispatch({
                                 type: REGISTER,
                                 payload: {
-                                    id, username, password
+                                    id, username, password ,firstName,lastName
                                 }
                             });
                             history.push('/account');

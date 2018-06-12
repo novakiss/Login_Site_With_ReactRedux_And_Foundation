@@ -59,17 +59,17 @@ app.get('/getInfo', (req, res) => {
 });
 
 app.post('/register', (req, res) => {
-    const {id, username, password} = req.body;
+    const {id, username, password,firstName,lastName} = req.body;
 
     if (id !== null && username !== null && password !== null) {
         if (req.session.registerUser) {
             req.session.registerUser = {
                 ...req.session.registerUser,
-                user: {...req.session.registerUser.user, [id]: {username: username, password: password}},
+                user: {...req.session.registerUser.user, [id]: {username,password,firstName,lastName}},
                 allId: [...req.session.registerUser.allId, id]
             };
         } else {
-            req.session.registerUser = {user: {[id]: {username: username, password: password}}, allId: [id]};
+            req.session.registerUser = {user: {[id]: {username , password,firstName,lastName}}, allId: [id]};
         }
         return res.send('REGISTER_SUCCESS')
     }
