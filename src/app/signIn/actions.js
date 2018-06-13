@@ -37,6 +37,9 @@ export const login = (username, password) => {
                     if(!success){
                         dispatch(showNotification('failed Login'));
                     }
+                }else {
+                    //for no register
+                    dispatch(showNotification('failed Login'));
                 }
             }).catch((e) => console.log(e));
         }
