@@ -32,6 +32,7 @@ app.all('/*', function (req, res, next) {
 app.get('/', (req, res) => {
     res.render('index');
 });
+
 app.post('/ping', function (req, res) {
     console.log(req.body);
     if (req.body.ping === 'TEST') {

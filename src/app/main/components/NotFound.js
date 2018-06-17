@@ -1,7 +1,7 @@
 import React from 'react'
 
 const NotFound = () => (
-    <p>404</p>
+    <p>Ops! Diese Seite existiert nicht ^_^</p>
 );
 
 export default NotFound;
